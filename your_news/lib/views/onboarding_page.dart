@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:your_news/controllers/onboarding_controller.dart';
 import 'package:your_news/core/constants/colors.dart';
 
@@ -11,12 +12,12 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   late OnboardingController _controller;
   Timer? _autoSlideTimer;
-  int _currentIndex = 0; // Track the current page index
+  int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _controller = OnboardingController(context);
+    _controller = Get.put(OnboardingController());
 
     _autoSlideTimer = Timer.periodic(Duration(seconds: 3), (timer) {
       if (_currentIndex < _controller.onboardingData.length - 1) {
@@ -63,8 +64,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             Align(
               alignment: Alignment.topRight,
               child: TextButton(
-                onPressed:
-                    _controller.navigateToLogin, // Navigate to login page
+                onPressed: _controller.navigateToLogin,
                 child: Text(
                   'Skip',
                   style: TextStyle(
@@ -82,6 +82,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   setState(() {
                     _currentIndex = index;
                   });
+                  _controller.onPageChanged(index);
                 },
                 itemCount: _controller.onboardingData.length,
                 itemBuilder: (context, index) {
@@ -110,7 +111,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: List.generate(
                               _controller.onboardingData.length,
-                              (dotIndex) => _buildDotIndicator(dotIndex),
+                              (dotIndex) =>
+                                  _controller.buildDotIndicator(dotIndex),
                             ),
                           ),
                           SizedBox(height: 20),
@@ -143,10 +145,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ),
             ),
             ElevatedButton(
-              onPressed: _nextPage, // Navigate to the next page
+              onPressed: _nextPage,
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primaryColor,
-                minimumSize: Size(200, 50),
+                 minimumSize: Size(double.infinity, 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

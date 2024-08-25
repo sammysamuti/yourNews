@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:your_news/screens/splash_screen.dart';
-
-void main() {
+import 'package:get_storage/get_storage.dart';
+import 'package:get/get.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -10,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
