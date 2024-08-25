@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:your_news/screens/auth/login_page.dart';
 import 'package:your_news/core/constants/colors.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:your_news/models/onboarding_contents.dart';
 
-class OnboardingController {
-  final BuildContext context;
+class OnboardingController extends GetxController {
   final PageController pageController = PageController();
+  final box = GetStorage();
   int currentPage = 0;
-
-  OnboardingController(this.context);
+  bool _isNavigating = false; // Flag to prevent concurrent navigation
 
   final List<OnboardingContent> onboardingData = [
     OnboardingContent(
@@ -32,16 +32,16 @@ class OnboardingController {
 
   void onPageChanged(int index) {
     currentPage = index;
+    update();
   }
 
   void navigateToLogin() {
-    Navigator.push(
-      context,
-      PageTransition(
-        type: PageTransitionType.rightToLeft,
-        child: LoginPage(),
-      ),
-    );
+    if (_isNavigating) return;
+    _isNavigating = true;
+    box.write('onboardingCompleted', true);
+    Future.delayed(Duration(milliseconds: 300), () {
+      Get.offAll(() => LoginPage(), transition: Transition.rightToLeft);
+    }).whenComplete(() => _isNavigating = false);
   }
 
   Widget buildDotIndicator(int index) {
