@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:your_news/screens/onboaring/onboarding_page.dart'; 
+import 'package:your_news/views/onboarding_page.dart'; 
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -30,15 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Color(0xFF4263EB),
       body: Center(
-        child: Text(
-          'yourNews',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'CustomFont', 
-          ),
-        ),
+        child: Image.asset('assets/images/yours_news.png')
       ),
     );
   }
