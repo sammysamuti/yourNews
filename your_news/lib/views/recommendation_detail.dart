@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_news/core/widgets/custom_app_bar.dart';
 import 'package:your_news/models/news_model.dart';
-import 'package:your_news/core/widgets/drawer.dart';
+
 
 class RecommendationDetail extends StatelessWidget {
   final NewsModel recommendation;
@@ -31,7 +31,6 @@ class RecommendationDetail extends StatelessWidget {
           Navigator.of(context).pop();
         },
       ),
-      drawer: DrawerWidget(context: context),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

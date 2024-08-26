@@ -43,8 +43,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
               onChanged: onSearchChanged,
             )
-          : Text(title),
-      centerTitle: true,
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+              ],
+            ),
+      centerTitle: !search,
       elevation: 0,
       leading: showBackButton
           ? IconButton(
@@ -55,7 +68,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   borderRadius: BorderRadius.circular(4.0),
                 ),
                 child: Icon(Icons.arrow_back, color: Colors.black),
-              ), 
+              ),
               onPressed: onBackPressed,
             )
           : showMenu

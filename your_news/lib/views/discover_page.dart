@@ -118,7 +118,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                               ),
                               SizedBox(height: 8),
                               Text(
-                                'BBC News', 
+                                'BBC News',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,
@@ -352,48 +352,57 @@ class _DiscoverPageState extends State<DiscoverPage> {
               ),
             ),
             SizedBox(height: 8),
-            Text(
-              recommendation.title!,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
-            SizedBox(height: 8),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => RecommendationDetail(
-                      recommendation: recommendation,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    recommendation.title!,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
                     ),
                   ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  side: BorderSide(
-                    color: Colors.blue,
-                    width: 1,
+                  SizedBox(height: 8),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RecommendationDetail(
+                            recommendation: recommendation,
+                          ),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        side: BorderSide(
+                          color: Colors.blue,
+                          width: 1,
+                        ),
+                      ),
+                      minimumSize: Size(100, 36),
+                    ),
+                    child: Text(
+                      'Business',
+                      style: TextStyle(color: Colors.blue),
+                    ),
                   ),
-                ),
-                minimumSize: Size(100, 36),
-              ),
-              child: Text(
-                'Business',
-                style: TextStyle(color: Colors.blue),
-              ),
-            ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                recommendation.imagePath!,
-                width: double.infinity,
-                height: 150,
-                fit: BoxFit.cover,
+                  SizedBox(height: 8),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      recommendation.imagePath!,
+                      width: double.infinity,
+                      height: 150,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
