@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:your_news/core/widgets/bottom_navigation_bar.dart';
-import 'package:your_news/core/widgets/drawer.dart';
-import 'package:your_news/core/widgets/custom_app_bar.dart';
+import 'package:your_news/views/recommendation_detail.dart';
 import 'package:your_news/models/news_model.dart';
 
 class HomePage extends StatefulWidget {
@@ -259,144 +257,180 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildRecommendation(NewsModel recommendation) {
-    return Card(
-      color: Color(0xFFF9FCFE),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(4),
-                        child: Image.asset(
-                          recommendation.icon!,
-                          width: double.infinity,
-                          height: 48,
-                          fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RecommendationDetail(
+              recommendation: NewsModel(
+                category: 'Business',
+                title:
+                    'Tech Startup Secures \$50 Million Funding for Expansion',
+                news: 'Forbes ',
+                date: ' Jun 11, 2023',
+                imagePath: 'assets/images/nature2.jpeg',
+                icon: 'assets/images/forbeds.jpeg',
+                icon2: 'assets/images/verified.png',
+              ),
+            ),
+          ),
+        );
+      },
+      child: Card(
+        color: Color(0xFFF9FCFE),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(4),
+                          child: Image.asset(
+                            recommendation.icon!,
+                            width: double.infinity,
+                            height: 48,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(width: 8),
-                Expanded(
-                  flex: 4,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  SizedBox(width: 8),
+                  Expanded(
+                    flex: 4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              ' ${recommendation.news}',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                            SizedBox(width: 3),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(4),
+                              child: Image.asset(
+                                recommendation.icon2!,
+                                width: 24,
+                                height: 24,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          recommendation.date!,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey[400],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Row(
                         children: [
-                          Text(
-                            ' ${recommendation.news}',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey[600],
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.grey[300],
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              minimumSize: Size(100, 36),
+                            ),
+                            child: Text(
+                              'Follow',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
                             ),
                           ),
-                          SizedBox(width: 3),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(4),
-                            child: Image.asset(
-                              recommendation.icon2!,
-                              width: 24,
-                              height: 24,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                          SizedBox(width: 8),
+                          Icon(Icons.more_vert,
+                              size: 24, color: Colors.grey[600]),
                         ],
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        recommendation.date!,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[400],
-                        ),
-                      ),
+                      )
                     ],
                   ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Row(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.grey[300],
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            minimumSize: Size(100, 36),
-                          ),
-                          child: Text(
-                            'Follow',
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 8),
-                        Icon(Icons.more_vert,
-                            size: 24, color: Colors.grey[600]),
-                      ],
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 8),
-          Text(
-            recommendation.title!,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
-          ),
-          SizedBox(height: 8),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-                side: BorderSide(
-                  color: Colors.blue,
-                  width: 1,
-                ),
+                ],
               ),
-              minimumSize: Size(100, 36),
             ),
-            child: Text(
-              'Business',
+            SizedBox(height: 8),
+            Text(
+              recommendation.title!,
               style: TextStyle(
-                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
               ),
             ),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
-              recommendation.imagePath,
-              width: double.infinity,
-              height: 150,
-              fit: BoxFit.cover,
+            SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RecommendationDetail(
+                      recommendation: NewsModel(
+                        category: recommendation.category,
+                        title: recommendation.title,
+                        date: recommendation.date,
+                        news: recommendation.news,
+                        imagePath: recommendation.imagePath,
+                      ),
+                    ),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  side: BorderSide(
+                    color: Colors.blue,
+                    width: 1,
+                  ),
+                ),
+                minimumSize: Size(100, 36),
+              ),
+              child: Text(
+                'Business',
+                style: TextStyle(
+                  color: Colors.blue,
+                ),
+              ),
             ),
-          ),
-        ],
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                recommendation.imagePath,
+                width: double.infinity,
+                height: 150,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

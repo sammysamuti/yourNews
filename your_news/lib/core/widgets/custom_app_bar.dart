@@ -4,14 +4,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showMenu;
   final bool showNotification;
   final bool showSettings;
-  final bool showVerts; // Vertical dots icon
-  final bool search; // New parameter for search bar
+  final bool showVerts;
+  final bool search;
+  final bool showBackButton;
   final String title;
   final VoidCallback onMenuPressed;
   final VoidCallback onNotificationPressed;
   final VoidCallback onSettingsPressed;
   final VoidCallback onVertsPressed;
-  final ValueChanged<String>? onSearchChanged; // Callback for search input
+  final VoidCallback? onBackPressed;
+  final ValueChanged<String>? onSearchChanged;
 
   CustomAppBar({
     required this.showMenu,
@@ -19,11 +21,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.showSettings,
     required this.showVerts,
     required this.search,
+    required this.showBackButton,
     required this.title,
     required this.onMenuPressed,
     required this.onNotificationPressed,
     required this.onSettingsPressed,
     required this.onVertsPressed,
+    this.onBackPressed,
     this.onSearchChanged,
   });
 
@@ -42,7 +46,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           : Text(title),
       centerTitle: true,
       elevation: 0,
-      leading: showMenu
+      leading: showBackButton
           ? IconButton(
               icon: Container(
                 padding: EdgeInsets.all(8.0),
@@ -50,11 +54,23 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   border: Border.all(color: Colors.grey[300]!, width: 1),
                   borderRadius: BorderRadius.circular(4.0),
                 ),
-                child: Icon(Icons.menu, color: Colors.black),
-              ),
-              onPressed: onMenuPressed,
+                child: Icon(Icons.arrow_back, color: Colors.black),
+              ), 
+              onPressed: onBackPressed,
             )
-          : null,
+          : showMenu
+              ? IconButton(
+                  icon: Container(
+                    padding: EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey[300]!, width: 1),
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                    child: Icon(Icons.menu, color: Colors.black),
+                  ),
+                  onPressed: onMenuPressed,
+                )
+              : null,
       actions: [
         if (showVerts)
           IconButton(
@@ -64,8 +80,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 border: Border.all(color: Colors.grey[300]!, width: 1),
                 borderRadius: BorderRadius.circular(4.0),
               ),
-              child: Icon(Icons.more_vert,
-                  color: Colors.black), // Vertical three dots
+              child: Icon(Icons.more_vert, color: Colors.black),
             ),
             onPressed: onVertsPressed,
           ),
@@ -77,8 +92,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 border: Border.all(color: Colors.grey[300]!, width: 1),
                 borderRadius: BorderRadius.circular(4.0),
               ),
-              child: Icon(Icons.notifications_none,
-                  color: Colors.black), // Notification icon
+              child: Icon(Icons.notifications_none, color: Colors.black),
             ),
             onPressed: onNotificationPressed,
           ),
@@ -90,7 +104,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 border: Border.all(color: Colors.grey[300]!, width: 1),
                 borderRadius: BorderRadius.circular(4.0),
               ),
-              child: Icon(Icons.settings, color: Colors.black), // Settings icon
+              child: Icon(Icons.settings, color: Colors.black),
             ),
             onPressed: onSettingsPressed,
           ),
