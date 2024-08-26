@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:your_news/screens/auth/login_page.dart';
 import 'package:your_news/core/constants/colors.dart';
-import 'package:your_news/models/onboarding_contents.dart';
+import 'package:your_news/models/onboarding_model.dart';
 
 class OnboardingController extends GetxController {
   final PageController pageController = PageController();

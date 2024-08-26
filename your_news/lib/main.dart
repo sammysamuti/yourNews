@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:your_news/screens/splash_screen.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
+import 'package:your_news/routes/app_routes.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
@@ -26,10 +27,12 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.black,
         ),
       ),
-      home: SplashScreen(),
+      initialRoute: AppRoutes.splash,
+      getPages: AppRoutes.pages,
     );
   }
 }
+
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
