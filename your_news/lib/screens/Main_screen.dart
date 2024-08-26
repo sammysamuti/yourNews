@@ -40,6 +40,7 @@ class _MainScreenState extends State<MainScreen> {
               showSettings: false,
               showVerts: false,
               search: false,
+              showBackButton: false,
               title: '',
               onMenuPressed: () {
                 _scaffoldKey.currentState?.openDrawer();
@@ -49,6 +50,7 @@ class _MainScreenState extends State<MainScreen> {
               },
               onSettingsPressed: () {},
               onVertsPressed: () {},
+              onBackPressed: () {},
             )
           : null,
       drawer: DrawerWidget(context: context),

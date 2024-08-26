@@ -42,6 +42,7 @@ class _BookmarkPage extends State<BookmarkPage> {
         showSettings: false,
         showVerts: false,
         search: false,
+        showBackButton: true,
         title: '',
         onMenuPressed: () {
           _scaffoldKey.currentState?.openDrawer();
@@ -51,6 +52,9 @@ class _BookmarkPage extends State<BookmarkPage> {
         },
         onSettingsPressed: () {},
         onVertsPressed: () {},
+        onBackPressed: () {
+          Navigator.of(context).pop();
+        },
       ),
       drawer: DrawerWidget(context: context),
     );

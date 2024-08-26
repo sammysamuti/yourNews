@@ -42,6 +42,7 @@ class _ProfilePage extends State<ProfilePage> {
         showSettings: false,
         showVerts: false,
         search: false,
+        showBackButton: false,
         title: '',
         onMenuPressed: () {
           _scaffoldKey.currentState?.openDrawer();
@@ -51,6 +52,9 @@ class _ProfilePage extends State<ProfilePage> {
         },
         onSettingsPressed: () {},
         onVertsPressed: () {},
+        onBackPressed: () {
+          Navigator.of(context).pop();
+        },
       ),
       drawer: DrawerWidget(context: context),
     );

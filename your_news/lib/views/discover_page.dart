@@ -42,6 +42,7 @@ class _DiscoverPage extends State<DiscoverPage> {
         showSettings: false,
         showVerts: false,
         search: false,
+        showBackButton: true,
         title: '',
         onMenuPressed: () {
           _scaffoldKey.currentState?.openDrawer();
@@ -51,10 +52,12 @@ class _DiscoverPage extends State<DiscoverPage> {
         },
         onSettingsPressed: () {},
         onVertsPressed: () {},
+        onBackPressed: () {
+          Navigator.of(context).pop(); 
+        },
       ),
       drawer: DrawerWidget(context: context),
       body: SingleChildScrollView(),
-   
     );
   }
 }
