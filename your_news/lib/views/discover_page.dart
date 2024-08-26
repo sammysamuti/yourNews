@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:your_news/models/news_model.dart';
 import 'package:your_news/views/recommendation_detail.dart';
+import 'package:your_news/core/widgets/custom_app_bar.dart';
+import 'package:your_news/views/search_page.dart';
 
 class DiscoverPage extends StatefulWidget {
   @override
@@ -23,15 +25,23 @@ class _DiscoverPageState extends State<DiscoverPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text(
-          'Discover',
-          style: TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
+      appBar: CustomAppBar(
+        showMenu: false,
+        showNotification: false,
+        showSettings: false,
+        showVerts: false,
+        search: false,
+        showBackButton: false,
+        title: 'Discover',
+        onMenuPressed: () {
+          _scaffoldKey.currentState?.openDrawer();
+        },
+        onNotificationPressed: () {
+          print('Notification pressed');
+        },
+        onSettingsPressed: () {},
+        onVertsPressed: () {},
+        onBackPressed: () {},
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -61,6 +71,13 @@ class _DiscoverPageState extends State<DiscoverPage> {
                   hintText: 'Search "News"',
                   prefixIcon: Icon(Icons.search, color: Colors.grey),
                 ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SearchWithFiltersScreen()),
+                  );
+                },
               ),
             ),
             Padding(
@@ -78,7 +95,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                   ),
                   SizedBox(height: 8),
                   SizedBox(
-                    height: 160,
+                    height: 200,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 2,
@@ -93,14 +110,6 @@ class _DiscoverPageState extends State<DiscoverPage> {
                           decoration: BoxDecoration(
                             color: Color(0xFFF9FCFE),
                             borderRadius: BorderRadius.circular(12.0),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.3),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset: Offset(0, 3),
-                              ),
-                            ],
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -111,8 +120,8 @@ class _DiscoverPageState extends State<DiscoverPage> {
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: Image.asset(
                                     imagePaths[index % imagePaths.length],
-                                    fit: BoxFit.cover,
-                                    height: 60,
+                                    fit: BoxFit.contain,
+                                    height: 100,
                                   ),
                                 ),
                               ),

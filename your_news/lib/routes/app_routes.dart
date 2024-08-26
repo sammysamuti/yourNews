@@ -6,6 +6,7 @@ import 'package:your_news/views/profile_page.dart';
 import 'package:your_news/screens/splash_screen.dart';
 import 'package:your_news/views/onboarding_page.dart';
 import 'package:your_news/screens/main_screen.dart';
+import 'package:your_news/views/search_page.dart'; // Make sure this import is correct
 
 class AppRoutes {
   static const String splash = '/';
@@ -14,6 +15,7 @@ class AppRoutes {
   static const String discover = '/discover';
   static const String bookmark = '/bookmark';
   static const String profile = '/profile';
+  static const String search = '/search';
 
   static final List<GetPage> pages = [
     GetPage(
@@ -35,6 +37,12 @@ class AppRoutes {
             name: '/bookmark', page: () => BookmarkPage(), title: 'Bookmark'),
         GetPage(name: '/profile', page: () => ProfilePage(), title: 'Profile'),
       ],
+    ),
+    GetPage(
+      name: search,
+      page: () =>
+          SearchWithFiltersScreen(), 
+      title: 'Search',
     ),
   ];
 }

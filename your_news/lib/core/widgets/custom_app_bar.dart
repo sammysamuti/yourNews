@@ -34,14 +34,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       title: search
-          ? TextField(
-              decoration: InputDecoration(
-                hintText: 'Search...',
-                border: InputBorder.none,
-                suffixIcon: Icon(Icons.search),
+          ? Container(
+              decoration: BoxDecoration(
+                color: Color(0xFFF9FCFE),
+                borderRadius: BorderRadius.circular(8.0),
               ),
-              onChanged: onSearchChanged,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Search "News"',
+                  prefixIcon: Icon(Icons.search, color: Colors.grey),
+                ),
+              ),
             )
           : Row(
               mainAxisAlignment: MainAxisAlignment.start,

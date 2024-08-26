@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_news/core/widgets/custom_app_bar.dart';
 import 'package:your_news/models/news_model.dart';
-
+import 'package:your_news/views/search_page.dart';
 
 class RecommendationDetail extends StatelessWidget {
   final NewsModel recommendation;
@@ -41,7 +41,7 @@ class RecommendationDetail extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     backgroundImage: AssetImage(recommendation.imagePath),
-                    radius: 30,
+                    radius: 28,
                   ),
                   SizedBox(width: 16),
                   Expanded(
@@ -51,13 +51,13 @@ class RecommendationDetail extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('6.8k News', style: TextStyle(fontSize: 14)),
+                            Text('6.8k News', style: TextStyle(fontSize: 11)),
                             SizedBox(width: 12),
                             Text('2.5k Followers',
-                                style: TextStyle(fontSize: 14)),
+                                style: TextStyle(fontSize: 11)),
                             SizedBox(width: 16),
                             Text('100 Following',
-                                style: TextStyle(fontSize: 14)),
+                                style: TextStyle(fontSize: 11)),
                           ],
                         ),
                         SizedBox(height: 8),
@@ -108,8 +108,7 @@ class RecommendationDetail extends StatelessWidget {
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment
-                        .spaceBetween, 
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
                         children: [
@@ -151,6 +150,13 @@ class RecommendationDetail extends StatelessWidget {
                     hintText: 'Search "News"',
                     prefixIcon: Icon(Icons.search, color: Colors.grey),
                   ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SearchWithFiltersScreen()),
+                    );
+                  },
                 ),
               ),
               SizedBox(height: 16),

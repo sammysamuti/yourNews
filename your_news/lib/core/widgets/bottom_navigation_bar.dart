@@ -13,25 +13,26 @@ class BottomNavigationBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get the height of the screen using MediaQuery
+    // to get the height of the screen using MediaQuery
     double screenHeight = MediaQuery.of(context).size.height;
+    double bottomBarHeight = 70.0; // Setting a fixed height for the bottom bar
 
     return Container(
+      height: bottomBarHeight, // Setting the height of the container
       color: Colors.white,
       child: GNav(
-        rippleColor: Colors.grey[300]!,
-        hoverColor: Colors.grey[100]!,
+        rippleColor: Colors.transparent,
+        hoverColor: Colors.transparent,
         gap: 8,
-        activeColor: Colors.black, // Set active icon and text color to black
+        activeColor: Colors.black,
         iconSize: 24,
         padding: EdgeInsets.symmetric(
           horizontal: 20,
-          vertical: screenHeight * 0.02, // Increase padding using MediaQuery
+          vertical: (bottomBarHeight - 24) / 2,
         ),
         duration: Duration(milliseconds: 300),
-        tabBackgroundColor:
-            Colors.transparent, // Remove background color when selected
-        color: Colors.black, // Set inactive icon and text color to black
+        tabBackgroundColor: Colors.transparent,
+        color: Colors.grey,
         tabs: [
           GButton(
             icon: Icons.home,
