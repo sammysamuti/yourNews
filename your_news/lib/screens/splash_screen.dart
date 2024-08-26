@@ -4,6 +4,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:your_news/controllers/onboarding_controller.dart';
 import 'package:your_news/screens/auth/login_page.dart';
+import 'package:your_news/screens/main_screen.dart';
 import 'package:your_news/views/onboarding_page.dart';
 import 'package:your_news/views/home_page.dart'; 
 
@@ -35,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
           context,
           PageTransition(
             type: PageTransitionType.fade,
-            child: HomePage(),
+            child: MainScreen(),
           ),
         );
       } else {

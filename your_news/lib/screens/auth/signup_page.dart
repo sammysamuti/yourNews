@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:your_news/core/constants/colors.dart';
 import 'package:your_news/screens/auth/login_page.dart';
+import 'package:your_news/screens/main_screen.dart';
 import 'package:your_news/views/home_page.dart';
 
 class SignupPage extends StatefulWidget {
@@ -33,7 +34,7 @@ class _SignupPageState extends State<SignupPage> {
       // Navigating to home page
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => MainScreen()),
       );
     }
   }
@@ -62,7 +63,7 @@ class _SignupPageState extends State<SignupPage> {
                   SizedBox(height: 20),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 236, 242, 249),
+                      color: Color(0xFFF9FCFE),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: TextFormField(
@@ -90,7 +91,7 @@ class _SignupPageState extends State<SignupPage> {
                   SizedBox(height: 20),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 236, 242, 249),
+                      color: Color(0xFFF9FCFE),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: TextFormField(
@@ -119,7 +120,7 @@ class _SignupPageState extends State<SignupPage> {
                   SizedBox(height: 20),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 236, 242, 249),
+                      color: Color(0xFFF9FCFE),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: TextFormField(
